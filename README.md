@@ -251,9 +251,9 @@ A：编辑 `main.py`，把 `self.attributes("-topmost", True)` 删掉。
 
 > 想换成你自己的形象：直接替换 `assets/pet.png`，再跑一次 `python tools/make_idle_frames.py` 即可，详见 [换成你自己的宠物形象](#换成你自己的宠物形象)。
 
-### 实现与测试
+### 实现要点
 
-需求设计、代码实现、参数调优与多轮实测验证均由作者完成，其中重点处理了 Windows 平台下 Tk / CustomTkinter 的几个经典坑位：
+项目在 Windows 平台下处理 Tk / CustomTkinter 时，重点解决了几个经典坑位：
 
 - 子线程直接操作控件会抛 `RuntimeError: main thread is not in main loop` —— 改为「子线程入队 + 主线程消费」
 - `-alpha` 与 `-transparentcolor` 在 Windows 上相互冲突，一旦设置 alpha，抠背景立刻失效 —— 去掉 alpha
