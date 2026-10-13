@@ -87,7 +87,7 @@ BalancePet/
 ### 1. 克隆仓库
 
 ```bash
-git clone https://github.com/<你的用户名>/BalancePet.git
+git clone https://github.com/renyang-create/BalancePet.git
 cd BalancePet
 ```
 
