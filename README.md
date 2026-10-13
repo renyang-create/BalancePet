@@ -4,6 +4,8 @@
 
 ![预览](docs/preview.gif)
 
+> **个人学习项目**：本项目为个人学习练手所作，主要用于熟悉 Python 桌面 GUI 开发、Windows 窗口行为与第三方 API 调用，属于非商业项目，不保证长期维护。图片素材的来源说明见文末。
+
 ---
 
 ## 项目简介
@@ -236,22 +238,29 @@ A：编辑 `main.py`，把 `self.attributes("-topmost", True)` 删掉。
 
 - ✅ 可以自由使用、修改、分发、商用
 - ✅ 保留版权声明即可
-- ⚠️ 请把 `LICENSE` 里的 `<YOUR NAME>` 换成你自己的名字或 GitHub 用户名
+- ⚠️ 二次分发时请保留 `LICENSE` 中的版权声明
 - ⚠️ 软件按"原样"提供，作者不对使用后果负责
 
 ---
 
-## AI 辅助说明
+## 素材与实现说明
 
-本项目的部分代码由 **CodeBuddy** 等 AI 编程工具辅助生成，并在其基础上做了大量实测与修正，包括：
+### 图像素材
 
-- 跨线程更新 Tk 控件导致的 `RuntimeError: main thread is not in main loop`（改为队列 + 主线程消费）
-- Windows 上 `-alpha` 与 `-transparentcolor` 冲突导致抠背景失效（去掉 alpha）
-- `<Button-1>` 是 `<ButtonPress-1>` 的别名，导致拖拽被误判成点击（点击判定挪到 `ButtonRelease`）
-- 拖拽位移累加导致窗口跑飞（改用根坐标反算窗口位置）
-- Pillow `Image.MESH` 的四边形语义方向与直觉相反
+本项目中的宠物形象（`assets/pet.png`）及全部动画帧（`assets/pet_frames/`）均由 **AI 工具生成**，仅用于本项目的功能演示与个人学习，**不包含任何官方素材，也不用于任何商业用途**。
 
-AI 生成的内容已经过逐条验证，但**不保证在所有环境下都无缺陷**。发现问题欢迎提 Issue / PR。
+> 想换成你自己的形象：直接替换 `assets/pet.png`，再跑一次 `python tools/make_idle_frames.py` 即可，详见 [换成你自己的宠物形象](#换成你自己的宠物形象)。
+
+### 实现与测试
+
+需求设计、代码实现、参数调优与多轮实测验证均由作者完成，其中重点处理了 Windows 平台下 Tk / CustomTkinter 的几个经典坑位：
+
+- 子线程直接操作控件会抛 `RuntimeError: main thread is not in main loop` —— 改为「子线程入队 + 主线程消费」
+- `-alpha` 与 `-transparentcolor` 在 Windows 上相互冲突，一旦设置 alpha，抠背景立刻失效 —— 去掉 alpha
+- `<Button-1>` 是 `<ButtonPress-1>` 的别名，同一控件重复绑定会让「拖拽」被误判成「点击」—— 点击判定挪到 `ButtonRelease` 并加位移阈值
+- 拖拽若以「按下点」为基准，位移会逐帧累加、窗口越拖越飞 —— 改用根坐标反算窗口位置
+
+本项目已在 **Windows + Python 3.14** 上完整验证；其他环境下的表现未做完整测试，遇到问题欢迎提 Issue / PR。
 
 ---
 
