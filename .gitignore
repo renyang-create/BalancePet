@@ -1,0 +1,67 @@
+# ---------------- 密钥 / 本地配置（绝对不能提交）----------------
+.env
+.env.local
+.env.*.local
+config.json
+
+# ---------------- 运行产物 ----------------
+pet_error.log
+*.log
+
+# ---------------- Python ----------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# ---------------- 虚拟环境 ----------------
+.venv/
+venv/
+ENV/
+env/
+.python-version
+
+# ---------------- 编辑器 / IDE ----------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.spyderproject
+.spyproject
+.project
+
+# ---------------- 依赖目录（本项目的 tools 用不到，防止误提交）----------------
+node_modules/
+
+# ---------------- 操作系统 ----------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ---------------- 构建 / 打包 ----------------
+*.spec
+*.exe
+!assets/**
